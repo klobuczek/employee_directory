@@ -1,13 +1,15 @@
 class PositionResource < ApplicationResource
+  use_adapter JsonapiCompliable::Adapters::Null
+
   type :positions
   model Position
 
   allow_filter :title_prefix do |scope, value|
-    scope.where(["title LIKE ?", "#{value}%"])
+    scope.condition(:title).starts_with(value)
   end
 
-  belongs_to :department,
-    scope: -> { Department.all },
-    foreign_key: :department_id,
-    resource: DepartmentResource
+  def resolve(scope)
+    scope.query!
+    scope.results
+  end
 end

@@ -9,9 +9,11 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'jsonapi_suite', '~> 0.6'
-gem 'jsonapi-rails', '~> 0.1'
-gem 'kaminari', '~> 0.17'
+gem 'jsonapi_suite'
+gem 'jsonapi-rails'
+gem 'kaminari'
+gem 'trample_search', require: 'trample'
+gem 'searchkick'
 
 group :development, :test do
   gem 'pry'

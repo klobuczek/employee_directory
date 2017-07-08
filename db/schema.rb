@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402202841) do
+ActiveRecord::Schema.define(version: 20170524131029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20170402202841) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "age"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "office_type"
+    t.integer  "office_id"
+  end
+
+  create_table "home_offices", force: :cascade do |t|
+    t.string   "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +45,18 @@ ActiveRecord::Schema.define(version: 20170402202841) do
     t.datetime "updated_at",    null: false
     t.index ["department_id"], name: "index_positions_on_department_id", using: :btree
     t.index ["employee_id"], name: "index_positions_on_employee_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "work_offices", force: :cascade do |t|
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
