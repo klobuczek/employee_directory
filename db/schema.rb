@@ -10,33 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402202841) do
+ActiveRecord::Schema.define(version: 20170816151330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "departments", force: :cascade do |t|
-    t.string   "name"
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name"
+    t.string "record_gid"
+    t.integer "blob_id"
+    t.time "created_at"
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_gid", "blob_id"], name: "index_active_storage_attachments_on_record_gid_and_blob_id", unique: true
+    t.index ["record_gid", "name"], name: "index_active_storage_attachments_on_record_gid_and_name"
+    t.index ["record_gid"], name: "index_active_storage_attachments_on_record_gid"
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key"
+    t.string "filename"
+    t.string "content_type"
+    t.text "metadata"
+    t.integer "byte_size"
+    t.string "checksum"
+    t.time "created_at"
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "departments", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "age"
+  create_table "employees", id: :serial, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "office_type"
+    t.integer "office_id"
+  end
+
+  create_table "home_offices", id: :serial, force: :cascade do |t|
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "positions", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.integer  "department_id"
-    t.string   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["department_id"], name: "index_positions_on_department_id", using: :btree
-    t.index ["employee_id"], name: "index_positions_on_employee_id", using: :btree
+  create_table "positions", id: :serial, force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "department_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_positions_on_department_id"
+    t.index ["employee_id"], name: "index_positions_on_employee_id"
+  end
+
+  create_table "posts", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "work_offices", id: :serial, force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

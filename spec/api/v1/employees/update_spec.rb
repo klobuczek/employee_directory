@@ -21,6 +21,35 @@ RSpec.describe 'v1/employees#update', type: :request do
     end
   end
 
+  describe 'attaching a file' do
+    let!(:employee) { create(:employee) }
+    let(:file) { fixture_file_upload("#{Rails.root}/spec/fixtures/testphoto.png") }
+    let(:encoded_file) { Base64.encode64(file.read) }
+
+    let(:payload) do
+      {
+        data: {
+          id: employee.id.to_s,
+          type: 'employees',
+          attributes: {
+            profile_photo: {
+              data: encoded_file,
+              filename: 'custom-filename.png'
+            }
+          }
+        }
+      }
+    end
+
+    it 'persists the file and associates to the employee' do
+      json_put "/api/v1/employees/#{employee.id}", payload
+      blob = employee.reload.profile_photo.attachment.blob
+      persisted = Base64.encode64(blob.download)
+      expect(persisted).to eq(encoded_file)
+      expect(blob.filename).to eq('custom-filename.png')
+    end
+  end
+
   describe 'nested update' do
     def create_position
       create :position,
