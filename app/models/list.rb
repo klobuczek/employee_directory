@@ -1,3 +1,3 @@
 class List < ApplicationRecord
-  belongs_to :post, optional: true
+  belongs_to :list, optional: true
 end

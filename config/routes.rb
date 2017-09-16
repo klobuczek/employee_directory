@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :employees
       resources :positions, only: [:index]
       resources :departments, only: [:index]
+      resources :lists
     end
   end
 end

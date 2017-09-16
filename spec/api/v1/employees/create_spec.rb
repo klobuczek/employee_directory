@@ -31,7 +31,8 @@ RSpec.describe 'v1/employees#create', type: :request do
           json_post '/api/v1/employees', payload
         }.to_not change { Employee.count }
 
-        expect(json[0].deep_symbolize_keys).to eq({
+        puts json
+        expect(json['errors'][0].deep_symbolize_keys).to eq({
           code: 'unprocessable_entity',
           status: '422',
           title: 'Validation Error',
