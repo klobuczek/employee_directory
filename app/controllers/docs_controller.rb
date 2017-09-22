@@ -19,4 +19,7 @@ class DocsController < ActionController::API
   end
 
   jsonapi_resource '/v1/employees'
+  jsonapi_resource '/v1/departments'
+  # jsonapi_resource '/v1/list'
+  jsonapi_resource '/v1/positions'
 end

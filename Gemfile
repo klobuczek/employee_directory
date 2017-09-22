@@ -6,31 +6,31 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails'
 gem 'pg'
-gem 'puma', '~> 3.0'
-gem 'jsonapi_suite', '~> 0.6'
-gem 'jsonapi-rails', '~> 0.1'
-gem 'jsonapi_spec_helpers', '~> 0.4', require: false
-gem 'jsonapi_swagger_helpers', '~> 0.4', require: false
-gem 'kaminari', '~> 0.17'
+gem 'puma'
+gem 'jsonapi_suite'
+gem 'jsonapi-rails', git: 'https://github.com/jsonapi-rb/jsonapi-rails.git', ref: '481b5a3fb1968e5e9512b157f7cccafc447fa4eb' # version incompatibility with latest gems
+gem 'jsonapi_spec_helpers', require: false
+gem 'jsonapi_swagger_helpers', require: false
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails'
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1.5'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'database_cleaner'
+  gem "factory_girl_rails"
   gem 'faker'
 end
 
