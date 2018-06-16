@@ -9,14 +9,14 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'jsonapi_suite', '~> 0.5'
+gem 'jsonapi_suite', '~> 0.5', '>= 0.5.4'
 gem 'jsonapi-rails', '~> 0.1'
-gem 'kaminari', '~> 0.17'
+gem 'kaminari', '~> 0.17', '>= 0.17.0'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end
 
 group :development do
@@ -28,7 +28,7 @@ end
 
 group :test do
   gem 'database_cleaner', '~> 1.5'
-  gem "factory_girl_rails", "~> 4.0"
+  gem "factory_girl_rails", "~> 4.8", ">= 4.8.0"
   gem 'faker'
 end
 
